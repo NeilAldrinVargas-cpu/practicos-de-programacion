@@ -1,0 +1,49 @@
+#include <iostream>
+
+using namespace std;
+
+// Prototipo de la función
+int contarDigitosPares(int numero);
+
+int main() {
+    int num;
+
+    cout << "--- Analizador de Dígitos Pares ---" << endl;
+    cout << "Ingrese un numero entero positivo: ";
+    cin >> num;
+
+    // Validar que el número sea positivo como indica el enunciado
+    if (num < 0) {
+        cout << "Por favor, ingrese un numero positivo." << endl;
+    } else {
+        // Llamada a la función y muestra del resultado
+        int totalPares = contarDigitosPares(num);
+        cout << "El numero " << num << " tiene " << totalPares << " digito(s) pare(s)." << endl;
+    }
+
+    return 0;
+}
+
+// Función que procesa el número mediante iteraciones
+int contarDigitosPares(int numero) {
+    int contador = 0;
+    int digito;
+
+    // Caso especial: si el usuario ingresa 0, el 0 se considera par
+    if (numero == 0) return 1;
+
+    while (numero > 0) {
+        // 1. Extraer el último dígito con el residuo de 10
+        digito = numero % 10;
+
+        // 2. Verificar si el dígito es par
+        if (digito % 2 == 0) {
+            contador++;
+        }
+
+        // 3. Eliminar el último dígito usando división entera
+        numero = numero / 10;
+    }
+
+    return contador;
+}
